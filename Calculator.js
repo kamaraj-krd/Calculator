@@ -1,48 +1,51 @@
-// Get the output display
 const output = document.getElementById("output");
-
-// Store all buttons
 const buttons = document.querySelectorAll("button");
 
-// Initialize a string to store the expression
-let expression = "";
+let currentInput = "";
+let previousInput = "";
+let operator = "";
 
-// Add click event to every button
-buttons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const value = btn.textContent;
+buttons.forEach(button => {
+    button.addEventListener("click", () => {
+        const value = button.textContent;
 
-    switch (value) {
-      case "Ac":
-        expression = "";
-        output.textContent = "0";
-        break;
-
-      case "clear":
-        // Remove last character
-        expression = expression.slice(0, -1);
-        output.textContent = expression || "0";
-        break;
-
-      case "=":
-        try {
-          // Evaluate the expression safely
-          const result = eval(expression);
-          output.textContent = result;
-          expression = result.toString();
-        } catch {
-          output.textContent = "Error";
-          expression = "";
+        // AC button → Clear everything
+        if (value === "AC") {
+            currentInput = "";
+            previousInput = "";
+            operator = "";
+            output.textContent = "";
         }
-        break;
-
-      case "":
-        // Ignore empty button
-        break;
-
-      default:
-        expression += value;
-        output.textContent = expression;
-    }
-  });
+        // C button → Delete last character
+        else if (value === "C") {
+            currentInput = currentInput.slice(0, -1);
+            output.textContent = currentInput;
+        }
+        // Equal button
+        else if (value === "=") {
+            if (currentInput && previousInput && operator) {
+                try {
+                    currentInput = eval(`${previousInput} ${operator} ${currentInput}`).toString();
+                } catch {
+                    currentInput = "Error";
+                }
+                output.textContent = currentInput;
+                operator = "";
+                previousInput = "";
+            }
+        }
+        // Operator buttons
+        else if (["+", "-", "*", "/", "%"].includes(value)) {
+            if (currentInput) {
+                operator = value;
+                previousInput = currentInput;
+                currentInput = "";
+            }
+        }
+        // Numbers and decimal
+        else {
+            currentInput += value;
+            output.textContent = currentInput;
+        }
+    });
 });
