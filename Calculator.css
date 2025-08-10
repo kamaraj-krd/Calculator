@@ -1,0 +1,36 @@
+body{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: larger;
+    background-color: aliceblue;
+    justify-items: center;
+}
+div.first{
+    background-color: lab(72.55% -17.65 -42.55 / 0.918);
+    width: 350px;
+    height: 450px;
+    margin: 20px;
+    padding: 20px;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+p {
+    font-size: larger;
+    
+    width: 100%;
+    height: 40px;
+    text-align: right;       /* Align text to the right */
+    
+}
+
+button{
+    width: 40px;
+    border-radius: 5px;
+    margin: 20px;
+    padding: 5px;
+}
+button:hover{
+    background-color: chartreuse;
+    
+}
