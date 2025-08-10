@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guessing number Random number </title>
+    <style>
+        body{
+            font-size: x-large;
+            font-family: 'Times New Roman', Times, serif;
+            text-align: center; background-color: aliceblue;
+        }
+        h1{
+            color: blue;
+        }
+        button{
+            color: rgb(195, 4, 122);
+        }
+        input{
+            color: black;
+            background-color: aqua;
+        }
+        button:hover{
+            background-color: chartreuse;
+        }
+        p{
+            color: magenta;
+        }
+      
+    </style>
+</head>
+<body>
+    <h1>Guess the number</h1>
+    <p style="color: blueviolet;">Type the number between 0 to 10</p>
+    <input type="text" id="in" placeholder="Enter number">
+    <button onclick="check()" >Check</button>
+    <p id="answer">Your'e Right/Wrong</p><br>
+    <p id="mark"></p>
+    <script>
+        var store=document.getElementById("answer")
+        var number_user=document.getElementById("in")
+        var Score=document.getElementById("mark")
+        var score=10
+        // var result=Number(number_user.value)
+        // var a=Math.random()
+        // var random_numbered=(Math.floor(a*10)+1)
+    //    console.log(random_numbered)
+    //    console.log(result)
+       function check()
+       {
+        var result=Number(number_user.value)
+        var a=Math.random()
+        var random_numbered=(Math.floor(a*10)+1)
+
+        if(result==random_numbered){
+        store.innerText="Right"
+        score+=1
+        Score.innerHTML="Score is : "+score
+        if(score==15){
+        alert("You WON")
+        }
+
+        }
+        else{
+            store.innerText="wrong"
+            alert("Try Another number")
+            score-=1
+            Score.innerHTML="Score is : "+score
+             if(score==0){
+                alert("Game Over")
+             }
+        }
+
+       }
+    </script>
+   
+</body>
+</html>
